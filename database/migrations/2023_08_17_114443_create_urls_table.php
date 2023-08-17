@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('urls', function (Blueprint $table) {
             $table->id();
+            $table->string('destination');
+
+            $table->string('slug')->unique();
+            $table->bigInteger('views')->default(0);
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->timestamp('expiration_date')->nullable();
+            $table->timestamp('last_accessed_at')->nullable();
             $table->timestamps();
         });
     }
