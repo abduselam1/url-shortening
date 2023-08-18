@@ -12,6 +12,11 @@ class UrlController extends Controller
 {
     public function redirect(Url $url)
     {
+        // Checking if the url has expiration date if it did
+        // We have to check if it expired and then abort 404
+        if ($url->expiration_date && $url->expiration_date < now()) {
+            abort(404);
+        }
         $url->increment('views');
         $url->update([
             'last_accessed_at' => now()
