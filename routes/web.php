@@ -21,14 +21,14 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('test',function(){
-    // $url = Url::where('slug','asdfa')->first();
-    // if(!$url){
-
-    //     return 'hello';
-    // }
-    // return 'nope';
-    
+Route::get('form',function(){
+    return view('form');
 });
+
+Route::view('table','table');
+
+Route::view('login','login');
+
+Route::view('register','register');
 
 Route::get('/{url}',[UrlController::class,'redirect']);
